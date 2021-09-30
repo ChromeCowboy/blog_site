@@ -53,7 +53,7 @@
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -62,17 +62,22 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   text-align: center;
   line-height: 1.5;
 }
 
 html {
-  background-color: hsla(var(--color-accent-2-h), var(--color-accent-2-s), var(--color-accent-2-l), 0.05);
+  background-color: hsla(
+    var(--color-accent-2-h),
+    var(--color-accent-2-s),
+    var(--color-accent-2-l),
+    0.05
+  );
   font-family: "Montserrat", sans-serif;
 }
 
@@ -155,9 +160,20 @@ h4 {
   margin: 1rem;
   padding: 2rem;
   border-radius: 0.25rem;
-  color: hsla(var(--color-white-h), var(--color-white-s), var(--color-white-l), 1);
-  background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 1);
-  border: 10px solid hsla(var(--color-accent-h), var(--color-accent-s), var(--color-accent-l), 1);
+  color: hsla(
+    var(--color-white-h),
+    var(--color-white-s),
+    var(--color-white-l),
+    1
+  );
+  background-color: hsla(
+    var(--color-primary-h),
+    var(--color-primary-s),
+    var(--color-primary-l),
+    1
+  );
+  border: 10px solid
+    hsla(var(--color-accent-h), var(--color-accent-s), var(--color-accent-l), 1);
 }
 
 .parent-container {
@@ -166,12 +182,12 @@ h4 {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   grid-gap: 1rem;
   height: auto;
 }
@@ -182,14 +198,25 @@ h4 {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   width: 18rem;
   border-radius: 1rem;
-  background-color: hsla(var(--color-accent-2-h), var(--color-accent-2-s), var(--color-accent-2-l), 0.1);
-  border: 6px solid hsla(var(--color-shade-1-h), var(--color-shade-1-s), var(--color-shade-1-l), 1);
+  background-color: hsla(
+    var(--color-accent-2-h),
+    var(--color-accent-2-s),
+    var(--color-accent-2-l),
+    0.1
+  );
+  border: 6px solid
+    hsla(
+      var(--color-shade-1-h),
+      var(--color-shade-1-s),
+      var(--color-shade-1-l),
+      1
+    );
 }
 
 .title {
@@ -204,9 +231,15 @@ h4 {
   width: 192px;
   height: 277px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 0.5rem;
-  border: 3px solid hsla(var(--color-accent-2-h), var(--color-accent-2-s), var(--color-accent-2-l), 0.5);
+  border: 3px solid
+    hsla(
+      var(--color-accent-2-h),
+      var(--color-accent-2-s),
+      var(--color-accent-2-l),
+      0.5
+    );
 }
 
 .rating {
@@ -279,14 +312,14 @@ footer {
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     height: 172rem;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     grid-gap: 0.5rem;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
   }
   .child-container {
     display: -webkit-box;
@@ -294,11 +327,11 @@ footer {
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     text-align: center;
     width: 18rem;
     height: 28rem;
