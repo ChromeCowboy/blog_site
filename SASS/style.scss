@@ -1,0 +1,256 @@
+// HOW TO COMBINE SASS COLOR FUNCTIONS AND CSS VARIABLES
+// credits: https://codyhouse.co/blog/post/how-to-combine-sass-color-functions-and-css-variables
+
+// return css color variable with different opacity value
+@function alpha($color, $opacity) {
+  $color: str-replace($color, "var(");
+  $color: str-replace($color, ")");
+  $color-h: var(#{$color + "-h"});
+  $color-s: var(#{$color + "-s"});
+  $color-l: var(#{$color + "-l"});
+  @return hsla($color-h, $color-s, $color-l, $opacity);
+}
+
+// replace substring with another string
+// credits: https://css-tricks.com/snippets/sass/str-replace-function/
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+  @return $string;
+}
+
+@mixin defineColorHSL($color, $hue, $saturation, $lightness) {
+  #{$color}: unquote("hsl(#{$hue}, #{$saturation}, #{$lightness})");
+  #{$color}-h: #{$hue};
+  #{$color}-s: #{$saturation};
+  #{$color}-l: #{$lightness};
+}
+
+:root,
+[data-theme="default"] {
+  @include defineColorHSL(--color-primary, 220, 89%, 56%);
+  @include defineColorHSL(--color-shade-1, 220.5, 90.9%, 91.4%);
+  @include defineColorHSL(--color-shade-2, 219, 88.2%, 86.7%);
+  @include defineColorHSL(--color-shade-3, 219.8, 88.9%, 82.4%);
+  @include defineColorHSL(--color-accent, 53.7, 89%, 53.5%);
+  @include defineColorHSL(--color-accent-2, 53.3, 85.5%, 35.1%);
+
+  @include defineColorHSL(--color-black, 240, 8%, 12%);
+  @include defineColorHSL(--color-white, 0, 0%, 100%);
+  // color contrasts
+  @include defineColorHSL(--color-contrast-lower, 26.8, 87.7%, 58.4%);
+  @include defineColorHSL(--color-contrast-low, 26.8, 87.8%, 71%);
+  @include defineColorHSL(--color-contrast-medium, 26.5, 88.6%, 79.4%);
+}
+
+// - - - - - - -
+// GLOBAL VARIABLES
+// - - - - - - - -
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+}
+html {
+  background-color: alpha(var(--color-accent-2), 0.05);
+  font-family: "Montserrat", sans-serif;
+
+  @media (min-width: 550px) {
+    font-size: 130%;
+  }
+  @media (min-width: 684px) {
+    font-size: 110%;
+  }
+  @media (min-width: 900px) {
+    font-size: 150%;
+  }
+}
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+@media screen and (min-width: 550px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+// - - - - - - - -
+// GLOBAL CLASSES
+// - - - - - - - -
+.heading {
+  margin: 1rem;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  color: alpha(var(--color-white), 1);
+  background-color: alpha(var(--color-primary), 1);
+  border: 10px solid alpha(var(--color-accent), 1);
+}
+.parent-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  grid-gap: 1rem;
+  height: auto;
+}
+.child-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 18rem;
+  border-radius: 1rem;
+  background-color: alpha(var(--color-accent-2), 0.1);
+  border: 6px solid alpha(var(--color-shade-1), 1);
+}
+.title {
+  margin-top: 1rem;
+}
+.value {
+  display: none;
+}
+
+.poster-img {
+  width: 192px;
+  height: 277px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 3px solid alpha(var(--color-accent-2), 0.5);
+}
+.rating {
+  font-size: 0;
+  margin-bottom: 1rem;
+}
+.rating span {
+  font-size: 1rem;
+}
+.rating span::before {
+  content: "☆";
+  color: black;
+}
+.rating span.active::before {
+  content: "★";
+  color: orange;
+}
+.rating span:hover {
+  cursor: pointer;
+}
+.today-year {
+  color: white;
+  margin: 1rem;
+  font-size: 0.75rem;
+}
+.foot p {
+  font-size: 1rem;
+}
+footer {
+  color: var(--color-white);
+  height: 4rem;
+  background-color: var(--color-black);
+  margin-top: 2rem;
+}
+@media screen and (min-width: 550px) {
+  .poster-img {
+    width: 284px;
+    height: 414px;
+  }
+}
+
+@media screen and (min-width: 683px) {
+  .parent-container {
+    height: 151rem;
+  }
+  .child-container {
+    width: 18rem;
+  }
+  .poster-img {
+    width: 144px;
+    height: 224px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .heading {
+    margin: 1rem;
+  }
+  .parent-container {
+    display: flex;
+    flex-direction: column;
+    height: 172rem;
+    flex-wrap: wrap;
+    grid-gap: 0.5rem;
+    justify-content: space-around;
+  }
+  .child-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    width: 18rem;
+    height: 28rem;
+  }
+  .title {
+    margin: 1rem;
+  }
+  .poster-img {
+    width: 284px;
+    height: 414px;
+  }
+}
