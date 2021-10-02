@@ -13,7 +13,7 @@ const hit = getElement(".the-hit-container");
 
 function Film(title, year, genre, poster, container, key) {
   if (!(this instanceof Film)) {
-    return new Film(title, year);
+    return new Film(title, year, genre, poster, container, key);
   }
   this.title = title;
   this.year = year;
